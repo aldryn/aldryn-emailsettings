@@ -1,8 +1,7 @@
 {
-	"name": "Email settings",
+	"name": "Aldryn Email Settings",
 	"package-name": "aldryn-emailsettings",
 	"description": "Email settings",
-	"version": "1.0a16",
 	"url": "https://github.com/aldryn/aldryn-emailsettings",
 	"author": {
 		"name": "Divio AG",
