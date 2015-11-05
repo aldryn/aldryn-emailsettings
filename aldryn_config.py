@@ -24,9 +24,10 @@ class Form(BaseForm):
     def to_settings(self, data, settings):
         is_stage = settings.get('DEBUG')
         if is_stage:
+            password = data.get('email_host_password_stage') or data.get('email_host_password')
             email_settings = {
                 'EMAIL_HOST': data.get('email_host_stage') or data.get('email_host'),
-                'EMAIL_HOST_PASSWORD': str(data.get('email_host_password_stage') or data.get('email_host_password')),
+                'EMAIL_HOST_PASSWORD': password.encode('ascii') if password else None,
                 'EMAIL_HOST_USER': data.get('email_host_user_stage') or data.get('email_host_user'),
                 'EMAIL_PORT': data.get('email_port_stage') or data.get('email_port'),
                 'EMAIL_USE_TLS': data.get('email_use_tls_stage') or data.get('email_use_tls'),
@@ -38,9 +39,10 @@ class Form(BaseForm):
                     'MANDRILL_API_KEY': stage_mandrill_api_key
                 })
         else:
+            password = data.get('email_host_password')
             email_settings = {
                 'EMAIL_HOST': data.get('email_host'),
-                'EMAIL_HOST_PASSWORD': str(data.get('email_host_password')),
+                'EMAIL_HOST_PASSWORD': password.encode('ascii') if password else None,
                 'EMAIL_HOST_USER': data.get('email_host_user'),
                 'EMAIL_PORT': data.get('email_port'),
                 'EMAIL_USE_TLS': data.get('email_use_tls'),
