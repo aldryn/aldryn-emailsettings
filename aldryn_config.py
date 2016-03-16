@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from aldryn_client.forms import BaseForm, CharField, NumberField, CheckboxField
+from aldryn_client.forms import (
+    BaseForm, CharField, CheckboxField, NumberField, PasswordField,
+)
 
 
 class Form(BaseForm):
@@ -7,7 +9,7 @@ class Form(BaseForm):
     email_host = CharField('SMTP Host', initial='localhost')
     email_port = NumberField('SMTP Port', initial=25)
     email_host_user = CharField('SMTP User', initial='')
-    email_host_password = CharField('SMTP Password', initial='')
+    email_host_password = PasswordField('SMTP Password', initial='')
     email_use_tls = CheckboxField('Use TLS', required=False, initial=False)
 
     default_from_email = CharField('Default from email', initial='', required=False)
