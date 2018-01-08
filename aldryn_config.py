@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.utils import six
+import six
 
 from aldryn_client.forms import BaseForm, CharField, NumberField, CheckboxField
 
