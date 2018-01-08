@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.utils import six
+
 from aldryn_client.forms import BaseForm, CharField, NumberField, CheckboxField
 
 
@@ -27,7 +29,7 @@ class Form(BaseForm):
             password = data.get('email_host_password_stage') or data.get('email_host_password')
             email_settings = {
                 'EMAIL_HOST': data.get('email_host_stage') or data.get('email_host'),
-                'EMAIL_HOST_PASSWORD': password.encode('ascii') if password else None,
+                'EMAIL_HOST_PASSWORD': six.b(password) if password else None,
                 'EMAIL_HOST_USER': data.get('email_host_user_stage') or data.get('email_host_user'),
                 'EMAIL_PORT': data.get('email_port_stage') or data.get('email_port'),
                 'EMAIL_USE_TLS': data.get('email_use_tls_stage') or data.get('email_use_tls'),
@@ -42,7 +44,7 @@ class Form(BaseForm):
             password = data.get('email_host_password')
             email_settings = {
                 'EMAIL_HOST': data.get('email_host'),
-                'EMAIL_HOST_PASSWORD': password.encode('ascii') if password else None,
+                'EMAIL_HOST_PASSWORD': six.b(password) if password else None,
                 'EMAIL_HOST_USER': data.get('email_host_user'),
                 'EMAIL_PORT': data.get('email_port'),
                 'EMAIL_USE_TLS': data.get('email_use_tls'),
