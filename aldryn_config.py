@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import six
-
 from aldryn_client.forms import BaseForm, CharField, NumberField, CheckboxField
 
 
@@ -24,6 +22,8 @@ class Form(BaseForm):
     mandrill_api_key_stage = CharField('Mandrill API key for stage', initial='', required=False)
 
     def to_settings(self, data, settings):
+        import six  # This file is read before setup.py execution (so six is not installed). This method is not.
+
         is_stage = settings.get('DEBUG')
         if is_stage:
             password = data.get('email_host_password_stage') or data.get('email_host_password')
